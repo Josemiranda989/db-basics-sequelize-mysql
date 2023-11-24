@@ -10,5 +10,6 @@ module.exports = (sequelize, dataTypes) => {
       timestamps: false,
     };
     const Categoria = sequelize.define(alias, cols, config);
+
     return Categoria;
   };

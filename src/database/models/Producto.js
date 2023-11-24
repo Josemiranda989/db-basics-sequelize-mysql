@@ -12,10 +12,10 @@ module.exports = (sequelize, dataTypes) => {
     },
     categoria_id: {
       type: dataTypes.INTEGER,
-/*       references: {
+      references: {
         model: "Categorias",
         key: "id",
-      }, */
+      },
     },
   };
   let config = {
@@ -23,5 +23,7 @@ module.exports = (sequelize, dataTypes) => {
     timestamps: false,
   };
   const Producto = sequelize.define(alias, cols, config);
+  
   return Producto;
 };
+
