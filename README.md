@@ -71,3 +71,10 @@ Podes probar todos los endpoint simplemente importando esta colección a tu post
 * [github/josemiranda989](https://github.com/josemiranda989)
 
 * [github/guidomaimone](https://github.com/GuidoMaimone)
+
+## Abierto a Pull Request 
+
+- Agregar más consultas con relaciones
+- Encriptacion de contraseñas (bycriptjs)
+- Agregar paranoid para borrado lógico
+- Validaciones con sequelize
