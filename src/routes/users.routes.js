@@ -3,14 +3,20 @@ const {
   listado,
   perfil,
   nuevoUsuario,
+  nuevoHistorial,
+  historialUsuario,
 } = require("../controllers/users.controllers");
 const router = express.Router();
 
-//GET Usuarios http://localhost:3000/usuarios
+//GET /usuarios
 router.get("/", listado);
-//GET perfil http://localhost:3000/usuarios/1
+//GET /usuarios/1
 router.get("/perfil/:id", perfil);
-//POST crear http://localhost:3000/usuarios/create
+//POST /usuarios/crear
 router.post("/crear", nuevoUsuario);
+//POST /usuarios/nueva-compra
+router.post('/nueva-compra', nuevoHistorial)
+//GET /usuarios/historial
+router.get('/historial/:id', historialUsuario)
 
 module.exports = router;

@@ -3,6 +3,8 @@
 
 ## Links
 
+- [POSTMAN DOCUMENTACION](https://documenter.getpostman.com/view/17897182/2s9YeD9Dan)
+
 - [Simple Queries](https://sequelize.org/master/manual/model-querying-basics.html#simple-select-queries)
 
 - [Operators](https://sequelize.org/v4/manual/tutorial/querying.html#operators)
@@ -55,6 +57,12 @@ Si necesitas deshacer todos los seeders:
 ```bash
 npx sequelize-cli db:seed:undo:all
 ```
+
+### Documentacion POSTMAN
+
+Podes probar todos los endpoint simplemente importando esta colección a tu postman local
+
+[Documentacion 🚀🚀🚀🚀🚀](https://documenter.getpostman.com/view/17897182/2s9YeD9Dan)
 
 ## Authors
 
