@@ -5,6 +5,7 @@ module.exports = {
           type: Sequelize.INTEGER,
           autoIncrement: true,
           primaryKey: true,
+          allowNull: true
         },
         usuario_id: {
           type: Sequelize.INTEGER,
