@@ -1,4 +1,4 @@
-# db-basics
+# DB-Basics-Sequelize-MySQL
 
 
 ## Links
