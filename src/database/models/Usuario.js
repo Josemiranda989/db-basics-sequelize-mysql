@@ -19,6 +19,11 @@ module.exports = (sequelize, dataTypes) => {
       timestamps: false,
     };
     const Usuario = sequelize.define(alias, cols, config);
+
+    Usuario.associate = function(models) {
+      Usuario.hasMany(models.HistorialCompras, { as: 'historialCompras', foreignKey: 'usuario_id' });
+    };
+
     return Usuario;
   };
   

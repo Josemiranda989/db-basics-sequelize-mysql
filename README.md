@@ -7,6 +7,8 @@
 
 - [Operators](https://sequelize.org/v4/manual/tutorial/querying.html#operators)
 
+- [Capacitacion Docente](https://docs.google.com/presentation/d/1mNypMVgPWAlRlxG38WpSg4B_hAUwRln7mIH1xL3dDCk/edit?usp=sharing)
+
 
 ## Ejecutar Migraciones
 

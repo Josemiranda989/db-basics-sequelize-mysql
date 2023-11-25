@@ -3,13 +3,13 @@ CREATE DATABASE db_basics;
 use db_basics;
 
 CREATE TABLE `categorias` (
-   `id` INT,
+   `id` INT AUTO_INCREMENT,
    `nombre` VARCHAR(50),
    PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `historial_compras` (
-   `id` INT,
+   `id` INT AUTO_INCREMENT,
    `usuario_id` INT,
    `producto_id` INT,
    `cantidad` INT,
@@ -18,7 +18,7 @@ CREATE TABLE `historial_compras` (
 );
 
 CREATE TABLE `productos` (
-   `id` INT,
+   `id` INT AUTO_INCREMENT,
    `nombre` VARCHAR(50),
    `precio` DECIMAL(10,2),
    `imagen` VARCHAR(150) DEFAULT 'default_img.png',
@@ -27,7 +27,7 @@ CREATE TABLE `productos` (
 );
 
 CREATE TABLE `usuarios` (
-   `id` INT,
+   `id` INT AUTO_INCREMENT,
    `nombre` VARCHAR(50),
    `correo` VARCHAR(50),
    `contrasena` VARCHAR(150),

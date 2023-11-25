@@ -10,12 +10,8 @@ module.exports = (sequelize, dataTypes) => {
     imagen: {
       type: dataTypes.STRING,
     },
-    categoria_id: {
+    categoria_id: { //podemos excluirlo para llamarlo en la asociacion
       type: dataTypes.INTEGER,
-      references: {
-        model: "Categorias",
-        key: "id",
-      },
     },
   };
   let config = {
@@ -23,7 +19,11 @@ module.exports = (sequelize, dataTypes) => {
     timestamps: false,
   };
   const Producto = sequelize.define(alias, cols, config);
-  
+
+  Producto.associate = function(models) {
+    Producto.belongsTo(models.Categorias, { as: "categoria", foreignKey: "categoria_id" });
+    Producto.hasMany(models.HistorialCompras, { as: 'historialCompras', foreignKey: 'producto_id' });
+  };
+
   return Producto;
 };
-

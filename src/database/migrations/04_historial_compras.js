@@ -3,6 +3,7 @@ module.exports = {
       return queryInterface.createTable('historial_compras', {
         id: {
           type: Sequelize.INTEGER,
+          autoIncrement: true,
           primaryKey: true,
         },
         usuario_id: {
