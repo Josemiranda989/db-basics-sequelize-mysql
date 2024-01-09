@@ -1,43 +1,231 @@
-CREATE DATABASE db_basics;
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 09-01-2024 a las 17:02:49
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.2.4
 
-use db_basics;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `db_basics_test`
+--
+CREATE DATABASE IF NOT EXISTS `db_basics_test` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `db_basics_test`;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `categorias`
+--
 
 CREATE TABLE `categorias` (
-   `id` INT AUTO_INCREMENT,
-   `nombre` VARCHAR(50),
-   PRIMARY KEY (`id`)
-);
+  `id` int(11) NOT NULL,
+  `nombre` varchar(150) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `categorias`
+--
+
+INSERT INTO `categorias` (`id`, `nombre`) VALUES
+(1, 'Electrónicos'),
+(2, 'Ropa'),
+(3, 'Libros'),
+(4, 'Hogar y Jardín'),
+(5, 'Deportes y aire libre'),
+(6, 'Juguetes y juegos'),
+(7, 'Salud y belleza');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `historial_compras`
+--
 
 CREATE TABLE `historial_compras` (
-   `id` INT AUTO_INCREMENT,
-   `usuario_id` INT,
-   `producto_id` INT,
-   `cantidad` INT,
-   `fecha_compra` DATE,
-   PRIMARY KEY (`id`)
-);
+  `id` int(11) NOT NULL,
+  `usuario_id` int(11) DEFAULT NULL,
+  `producto_id` int(11) DEFAULT NULL,
+  `cantidad` int(11) DEFAULT NULL,
+  `fecha_compra` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `historial_compras`
+--
+
+INSERT INTO `historial_compras` (`id`, `usuario_id`, `producto_id`, `cantidad`, `fecha_compra`) VALUES
+(1, 1, 1, 2, '2024-01-09 16:01:27'),
+(2, 3, 2, 1, '2024-01-09 16:01:27'),
+(3, 1, 3, 3, '2024-01-09 16:01:27'),
+(4, 4, 4, 1, '2024-01-09 16:01:27');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `productos`
+--
 
 CREATE TABLE `productos` (
-   `id` INT AUTO_INCREMENT,
-   `nombre` VARCHAR(50),
-   `precio` DECIMAL(10,2),
-   `imagen` VARCHAR(150) DEFAULT 'default_img.png',
-   `categoria_id` INT,
-   PRIMARY KEY (`id`)
-);
+  `id` int(11) NOT NULL,
+  `nombre` varchar(50) DEFAULT NULL,
+  `precio` decimal(10,2) DEFAULT NULL,
+  `imagen` varchar(150) DEFAULT 'default_img.png',
+  `categoria_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`id`, `nombre`, `precio`, `imagen`, `categoria_id`) VALUES
+(1, 'Laptop', 1200.50, 'default_img.png', 1),
+(2, 'Camiseta', 25.99, 'default_img.png', 2),
+(3, 'Libro \"El Principito\"', 15.99, 'default_img.png', 3),
+(4, 'Set de sábanas', 45.50, 'default_img.png', 4),
+(5, 'Balón de fútbol', 19.99, 'default_img.png', 5),
+(6, 'Muñeca Barbie', 29.99, 'default_img.png', 6),
+(7, 'Cepillo eléctrico para dientes', 34.99, 'default_img.png', 7);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `sequelizemeta`
+--
+
+CREATE TABLE `sequelizemeta` (
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `sequelizemeta`
+--
+
+INSERT INTO `sequelizemeta` (`name`) VALUES
+('01_categorias.js'),
+('02_productos.js'),
+('03_usuarios.js'),
+('04_historial_compras.js');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
 
 CREATE TABLE `usuarios` (
-   `id` INT AUTO_INCREMENT,
-   `nombre` VARCHAR(50),
-   `correo` VARCHAR(50),
-   `contrasena` VARCHAR(150),
-   `avatar_url` VARCHAR(150) DEFAULT 'default_avatar.png',
-   PRIMARY KEY (`id`)
-);
+  `id` int(11) NOT NULL,
+  `nombre` varchar(50) DEFAULT NULL,
+  `correo` varchar(50) DEFAULT NULL,
+  `contrasena` varchar(150) DEFAULT NULL,
+  `avatar_url` varchar(150) DEFAULT 'default_avatar.png'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `usuarios`
+--
 
-ALTER TABLE `historial_compras` ADD CONSTRAINT `FK_196ad5c2-7f19-493d-b230-f92369991737` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios`(`id`)  ;
+INSERT INTO `usuarios` (`id`, `nombre`, `correo`, `contrasena`, `avatar_url`) VALUES
+(1, 'Elon Musk', 'elon.musk@email.com', 'contraseña1', 'default_avatar.png'),
+(2, 'Taylor Swift', 'taylor.swift@email.com', 'contraseña2', 'default_avatar.png'),
+(3, 'Bill Gates', 'bill.gates@email.com', 'contraseña3', 'default_avatar.png'),
+(4, 'Oprah Winfrey', 'oprah.winfrey@email.com', 'contraseña4', 'default_avatar.png');
 
-ALTER TABLE `historial_compras` ADD CONSTRAINT `FK_413ce45d-1c18-4005-955c-ae0dbb96888b` FOREIGN KEY (`producto_id`) REFERENCES `productos`(`id`)  ;
+--
+-- Índices para tablas volcadas
+--
 
-ALTER TABLE `productos` ADD CONSTRAINT `FK_5d8b241b-5850-4272-b265-92b730c3c872` FOREIGN KEY (`categoria_id`) REFERENCES `categorias`(`id`)  ;
+--
+-- Indices de la tabla `categorias`
+--
+ALTER TABLE `categorias`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `historial_compras`
+--
+ALTER TABLE `historial_compras`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `usuario_id` (`usuario_id`),
+  ADD KEY `producto_id` (`producto_id`);
+
+--
+-- Indices de la tabla `productos`
+--
+ALTER TABLE `productos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `categoria_id` (`categoria_id`);
+
+--
+-- Indices de la tabla `sequelizemeta`
+--
+ALTER TABLE `sequelizemeta`
+  ADD PRIMARY KEY (`name`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `categorias`
+--
+ALTER TABLE `categorias`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de la tabla `historial_compras`
+--
+ALTER TABLE `historial_compras`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `productos`
+--
+ALTER TABLE `productos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `historial_compras`
+--
+ALTER TABLE `historial_compras`
+  ADD CONSTRAINT `historial_compras_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`),
+  ADD CONSTRAINT `historial_compras_ibfk_2` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`);
+
+--
+-- Filtros para la tabla `productos`
+--
+ALTER TABLE `productos`
+  ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
