@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-01-2024 a las 17:02:49
+-- Tiempo de generación: 09-01-2024 a las 17:41:50
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -22,6 +22,28 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `db_basics_test` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `db_basics_test`;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `carrito_compras`
+--
+
+CREATE TABLE `carrito_compras` (
+  `id` int(11) NOT NULL,
+  `usuario_id` int(11) DEFAULT NULL,
+  `producto_id` int(11) DEFAULT NULL,
+  `cantidad` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `carrito_compras`
+--
+
+INSERT INTO `carrito_compras` (`id`, `usuario_id`, `producto_id`, `cantidad`) VALUES
+(1, 1, 1, 1),
+(2, 1, 3, 2),
+(3, 2, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -66,10 +88,10 @@ CREATE TABLE `historial_compras` (
 --
 
 INSERT INTO `historial_compras` (`id`, `usuario_id`, `producto_id`, `cantidad`, `fecha_compra`) VALUES
-(1, 1, 1, 2, '2024-01-09 16:01:27'),
-(2, 3, 2, 1, '2024-01-09 16:01:27'),
-(3, 1, 3, 3, '2024-01-09 16:01:27'),
-(4, 4, 4, 1, '2024-01-09 16:01:27');
+(1, 1, 1, 2, '2024-01-09 16:26:28'),
+(2, 3, 2, 1, '2024-01-09 16:26:28'),
+(3, 1, 3, 3, '2024-01-09 16:26:28'),
+(4, 4, 4, 1, '2024-01-09 16:26:28');
 
 -- --------------------------------------------------------
 
@@ -116,7 +138,8 @@ INSERT INTO `sequelizemeta` (`name`) VALUES
 ('01_categorias.js'),
 ('02_productos.js'),
 ('03_usuarios.js'),
-('04_historial_compras.js');
+('04_historial_compras.js'),
+('05_carrito_compras.js');
 
 -- --------------------------------------------------------
 
@@ -145,6 +168,14 @@ INSERT INTO `usuarios` (`id`, `nombre`, `correo`, `contrasena`, `avatar_url`) VA
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `carrito_compras`
+--
+ALTER TABLE `carrito_compras`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `usuario_id` (`usuario_id`),
+  ADD KEY `producto_id` (`producto_id`);
 
 --
 -- Indices de la tabla `categorias`
@@ -185,6 +216,12 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `carrito_compras`
+--
+ALTER TABLE `carrito_compras`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
@@ -211,6 +248,13 @@ ALTER TABLE `usuarios`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `carrito_compras`
+--
+ALTER TABLE `carrito_compras`
+  ADD CONSTRAINT `carrito_compras_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `carrito_compras_ibfk_2` FOREIGN KEY (`producto_id`) REFERENCES `productos` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `historial_compras`

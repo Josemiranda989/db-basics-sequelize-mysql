@@ -18,5 +18,7 @@ router.post("/crear", nuevoUsuario);
 router.post('/nueva-compra', nuevoHistorial)
 //GET /usuarios/historial
 router.get('/historial/:id', historialUsuario)
+//GET /usuarios/carrito/:id
+router.get('/carrito/:id', historialUsuario)
 
 module.exports = router;
